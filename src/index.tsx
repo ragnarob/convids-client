@@ -1,14 +1,15 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import "@fontsource/mulish";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Event from "./routes/event";
 import EventList from "./routes/event-list";
 import LandingPage from "./routes/landing-page";
 import MakerList from "./routes/maker-list";
 import VideoList from "./routes/video-list";
+import "./styles/App.css";
 
 const client = new ApolloClient({
   uri: "/graphql",

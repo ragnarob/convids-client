@@ -1,4 +1,4 @@
-export default function FeaturedVideo({}) {
+export default function FeaturedVideo() {
   return (
     <section>
       <h2>Featured Video</h2>
