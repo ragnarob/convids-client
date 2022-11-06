@@ -1,24 +1,29 @@
-export interface Video {
-  id: string;
+export interface HasDate {
+  date: string;
+}
+
+export interface Video extends HasDate {
+  id: number;
   title: string;
   url: string;
   date: string;
-  event: Event[];
+  event?: Event;
   maker: Maker;
 }
 
 export interface Maker {
-  id: string;
+  id: number;
   name: string;
-  links: string;
   country: string;
+  youtubeLink?: string;
+  links?: string;
 }
 
-export interface Event {
+export interface Event extends HasDate {
   id: string;
   title: string;
-  shortTitle: string;
-  furtrackTag: string;
+  shortTitle?: string;
+  furtrackTag?: string;
   date: string;
   recurringEvent: RecurringEvent;
 }
@@ -38,6 +43,9 @@ export interface VideosGqlResponse {
 }
 export interface EventsGqlResponse {
   events: Event[];
+}
+export interface MakersGqlResponse {
+  makers: Maker[];
 }
 export interface RecurringEventsGqlResponse {
   recurringEvents: RecurringEvent[];

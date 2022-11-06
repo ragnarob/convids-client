@@ -1,7 +1,8 @@
-import { Card, Typography } from "antd";
+import { Card } from "antd";
+import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import { NavLink } from "react-router-dom";
 import { Video } from "../../types/types";
-import { daysAgoString } from "../../utils";
+import { daysAgoString, getDateFromObj } from "../../utils";
 import "./video-card.css";
 
 interface VideoCardProps {
@@ -25,9 +26,11 @@ export default function VideoCard({
         hoverable={hoverable}
         className={`video-card ${hoverable ? "" : "hover-fill"}`}
       >
-        <Typography.Text strong>{video.title}</Typography.Text>
-        <Typography>by [flag] {video.maker.name}</Typography>
-        <Typography>{daysAgoString(video.date)}</Typography>
+        <p>{video.title}</p>
+        <p>
+          {getUnicodeFlagIcon(video.maker.country)} {video.maker.name}
+        </p>
+        <p>{daysAgoString(getDateFromObj(video))}</p>
       </Card>
     </NavLink>
   );

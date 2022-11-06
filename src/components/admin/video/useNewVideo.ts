@@ -1,10 +1,23 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { AddMakerGqlResponse, Maker } from "../../../types/types";
-import { countryNameToCode } from "../../../utils";
+import { AddVideoGqlResponse, Event, Maker } from "../../../types/types";
 
-const createMakerQuery = gql`
-  mutation CreateMaker($title: String!, $country: String!, $links: String) {
-    addMaker(title: $title) {
+const newVideoQuery = gql`
+  mutation CreateVideo(
+    $title: String!
+    $eventId: Int
+    $makerId: Int!
+    $url: String!
+    $date: String!
+    $songs: String
+  ) {
+    addVideo(
+      title: $title
+      eventId: $eventId
+      makerId: $makerId
+      url: $url
+      date: $date
+      songs: $songs
+    ) {
       data {
         id
       }
@@ -28,11 +41,33 @@ interface AllMakersSimpleGqlResponse {
   makers: Maker[];
 }
 
+const allEventsSimpleQuery = gql`
+  query AllEventsSimple {
+    events {
+      id
+      title
+    }
+  }
+`;
+
+interface AllEventsSimpleGqlResponse {
+  events: Event[];
+}
+
+interface NewVideo {
+  title: string;
+  eventId?: number;
+  makerId: number;
+  url: string;
+  date: string;
+  songs?: string;
+}
+
 export default function useNewMaker() {
   const [
-    addGqlRecurringEvent,
+    addGqlVideo,
     { data: submitData, loading: submitLoading, error: submitError },
-  ] = useMutation<AddMakerGqlResponse>(createMakerQuery);
+  ] = useMutation<AddVideoGqlResponse>(newVideoQuery);
 
   const {
     loading: makersLoading,
@@ -40,15 +75,23 @@ export default function useNewMaker() {
     data: makersData,
   } = useQuery<AllMakersSimpleGqlResponse>(allMakersSimpleQuery);
 
-  function onSubmit(maker: Maker) {
-    const mappedEvent: Maker = {
-      ...maker,
-      country: countryNameToCode(maker.country),
-    };
-    addGqlRecurringEvent({ variables: mappedEvent });
+  const {
+    loading: eventsLoading,
+    error: eventsError,
+    data: eventsData,
+  } = useQuery<AllEventsSimpleGqlResponse>(allEventsSimpleQuery);
+
+  function onSubmit(video: NewVideo) {
+    console.log(video);
+    addGqlVideo({ variables: video });
   }
 
-  const success = submitData?.addMaker?.ok && submitData?.addMaker?.data;
+  const success = submitData?.addVideo?.ok && submitData?.addVideo?.data;
 
-  return { onSubmit, success, makers: makersData?.makers || [] };
+  return {
+    onSubmit,
+    success,
+    makers: makersData?.makers || [],
+    events: eventsData?.events || [],
+  };
 }

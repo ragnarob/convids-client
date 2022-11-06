@@ -1,5 +1,6 @@
 import { Typography } from "antd";
-import VideoCard from "../video-card";
+// import VideoCard from "../video-card";
+import VideoCard from "../video-card/VideoCard";
 import VideoEmbed from "../video-embed";
 import "./recent-videos-styles.css";
 import useRecentVideos from "./use-recent-videos";

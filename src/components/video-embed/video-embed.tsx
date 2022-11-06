@@ -1,7 +1,8 @@
 import { Typography } from "antd";
+import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import ReactPlayer from "react-player";
 import { Video } from "../../types/types";
-import { daysAgoString } from "../../utils";
+import { daysAgoString, getDateFromObj } from "../../utils";
 import "./video-embed-styles.css";
 
 export default function VideoEmbed({ video }: { video: Video }) {
@@ -10,7 +11,8 @@ export default function VideoEmbed({ video }: { video: Video }) {
       <Typography.Text className="video-title">{video.title}</Typography.Text>
       <br />
       <Typography.Text>
-        by {video.maker.name}, {daysAgoString(video.date)}
+        by {getUnicodeFlagIcon(video.maker.country)} {video.maker.name},{" "}
+        {daysAgoString(getDateFromObj(video))}
       </Typography.Text>
       <div className="player-wrapper">
         <ReactPlayer

@@ -16,6 +16,7 @@ export default function LandingPage({}) {
       <Typography.Text>
         This is a site for furry convention videos. You can find videos from
         lalal allala. Bla bla bla. Please asd asd asd asd asd. asd asd asd asd.
+        Fill in some nice nice text here later!!
       </Typography.Text>
 
       <Space className="button-container">

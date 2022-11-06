@@ -28,6 +28,13 @@ export default function EventList() {
         onChange={(e) => setMode(e.target.value)}
       />
 
+      <div className="red-box">
+        <p>
+          These results will obviously look better, this is just temporary. Will
+          have search/sorting.
+        </p>
+      </div>
+
       {mode === "single" && <SingleEventList />}
       {mode === "recurring" && <RecurringEventListContainer />}
     </>

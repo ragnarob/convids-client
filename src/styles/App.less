@@ -3,6 +3,12 @@
 @primary-color: #590f60;
 @app-secondary: #e94560;
 
+p,
+ul,
+li {
+  margin: 0;
+}
+
 body {
   font-family: "Mulish";
 }
@@ -14,4 +20,14 @@ body {
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.red-box {
+  background-color: #85061b88;
+  width: fit-content;
+  p {
+    color: white;
+  }
+  margin: 1rem 0;
+  padding: 1rem;
 }

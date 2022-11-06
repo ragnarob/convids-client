@@ -1,6 +1,15 @@
-import { Button, Form, Input, Result, Select, Space, Typography } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Result,
+  Select,
+  Space,
+  Typography,
+} from "antd";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
-import countries from "../../../utils/countries.json";
+import { Event, Maker } from "../../../types/types";
 import useNewVideo from "./useNewVideo";
 
 const labelCol = {
@@ -21,15 +30,27 @@ const formTailLayout = {
 };
 const formLayout = {
   labelCol,
-  wrapperCol: { span: 8, offset: 0 },
+  wrapperCol: { span: 10, offset: 0 },
 };
 
 interface NewVideoProps {
   onFinish: () => void;
 }
 
+function mapSelectValuesToIds(makers: Maker[], events: Event[], values: any) {
+  return {
+    ...values,
+    makerId: Number(makers.find((maker) => maker.name === values.maker)?.id),
+    eventId: values.event
+      ? Number(
+          events.find((event) => event.title === values.event)?.id as string
+        )
+      : undefined,
+  };
+}
+
 export default function NewVideo({ onFinish }: NewVideoProps) {
-  const { makers, onSubmit, success } = useNewVideo();
+  const { makers, events, onSubmit, success } = useNewVideo();
 
   return (
     <>
@@ -54,7 +75,7 @@ export default function NewVideo({ onFinish }: NewVideoProps) {
           name="New video"
           colon={false}
           labelWrap={true}
-          onFinish={onSubmit}
+          onFinish={(v) => onSubmit(mapSelectValuesToIds(makers, events, v))}
           {...formLayout}
         >
           <Form.Item
@@ -67,6 +88,34 @@ export default function NewVideo({ onFinish }: NewVideoProps) {
           </Form.Item>
 
           <Form.Item
+            label="Url"
+            name="url"
+            required
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="https://www.youtube.com/watch?v=XXXXXXX" />
+          </Form.Item>
+
+          <Form.Item
+            label="Published"
+            name="date"
+            required
+            rules={[{ required: true }]}
+          >
+            <DatePicker />
+          </Form.Item>
+
+          <Form.Item label="Event" name="event">
+            <Select showSearch>
+              {events.map((event) => (
+                <Select.Option value={event.title} key={event.id}>
+                  {event.title}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
             label="Maker"
             name="maker"
             required
@@ -74,34 +123,15 @@ export default function NewVideo({ onFinish }: NewVideoProps) {
           >
             <Select showSearch>
               {makers.map((maker) => (
-                <Select.Option value={maker.id}>
+                <Select.Option value={maker.name} key={maker.id}>
                   {getUnicodeFlagIcon(maker.country)} {maker.name}
                 </Select.Option>
               ))}
             </Select>
           </Form.Item>
 
-          <Form.Item
-            label="Country"
-            name="country"
-            required
-            rules={[{ required: true }]}
-          >
-            <Select showSearch>
-              {countries.map((country) => (
-                <Select.Option value={country.name}>
-                  {getUnicodeFlagIcon(country.code)} {country.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-
-          <Form.Item label="Furtrack tag" name="furtrackTag">
-            <Input placeholder="eg. melon_mow" />
-          </Form.Item>
-
-          <Form.Item label="Links" name="links">
-            <Input.TextArea placeholder="One link per line" />
+          <Form.Item label="Songs" name="songs">
+            <p>Coming later</p>
           </Form.Item>
 
           <Form.Item {...formTailLayout}>

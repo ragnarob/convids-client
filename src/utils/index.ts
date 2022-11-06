@@ -1,8 +1,9 @@
+import { HasDate } from "../types/types";
 import countries from "./countries.json";
 
-export function daysAgoString(dateStr: string) {
+export function daysAgoString(date: Date): string {
   const daysAgo = Math.floor(
-    (new Date().getTime() - new Date(dateStr).getTime()) / 86400000
+    (new Date().getTime() - date.getTime()) / 86400000
   );
   if (daysAgo === 0) {
     return "today";
@@ -25,4 +26,13 @@ export function daysAgoString(dateStr: string) {
 export function countryNameToCode(countryName: string) {
   const country = countries.find((c) => c.name === countryName);
   return country?.code as string;
+}
+
+export function countryCodeToName(countryCode: string) {
+  const country = countries.find((c) => c.code === countryCode);
+  return country?.name as string;
+}
+
+export function getDateFromObj(objectWithDate: HasDate) {
+  return new Date(Number(objectWithDate.date));
 }

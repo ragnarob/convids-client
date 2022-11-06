@@ -14,6 +14,7 @@ const searchVideosQuery = gql`
       }
       maker {
         name
+        country
       }
     }
   }
@@ -37,6 +38,7 @@ export default function useNavbar() {
         getVideos({
           variables: { searchText: search },
         });
+        searchTimeoutRef.current = undefined;
       }, 500);
     } else {
       clearTimeout(searchTimeoutRef.current);
@@ -57,7 +59,17 @@ export default function useNavbar() {
   }, [loading, error, search, data]);
 
   const isEmptyResult =
-    search && !loading && !error && searchResults.length === 0;
+    search &&
+    !loading &&
+    !error &&
+    searchResults.length === 0 &&
+    !searchTimeoutRef.current;
 
-  return { loading, search, setSearch, searchResults, isEmptyResult };
+  return {
+    loading: loading || searchTimeoutRef.current,
+    search,
+    setSearch,
+    searchResults,
+    isEmptyResult,
+  };
 }

@@ -1,14 +1,13 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Spin, Typography } from "antd";
 import { NavLink } from "react-router-dom";
-import VideoCard from "../video-card";
+import VideoCard from "../video-card/VideoCard";
 import "./navbar-styles.css";
 import useNavbar from "./useNavbar";
 
 export default function Navbar() {
   const { loading, search, setSearch, searchResults, isEmptyResult } =
     useNavbar();
-  console.log(searchResults);
 
   return (
     <>
@@ -26,6 +25,7 @@ export default function Navbar() {
             />
 
             <div className="navbar-links">
+              <NavLink to="/">Home</NavLink>
               <NavLink to="/video-list">All videos</NavLink>
               <NavLink to="/event-list">All events</NavLink>
               <NavLink to="/maker-list">All makers</NavLink>

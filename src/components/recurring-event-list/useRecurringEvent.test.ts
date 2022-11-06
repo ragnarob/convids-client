@@ -10,6 +10,12 @@ const mockedEvents: RecurringEvent[] = [
     country: "NO",
     events: [],
   },
+  {
+    id: "2",
+    title: "Test Event 2",
+    country: "US",
+    events: [],
+  },
 ];
 
 const testResponse: RecurringEventGqlReturn = {
@@ -19,8 +25,8 @@ const testResponse: RecurringEventGqlReturn = {
 };
 
 describe("recurring event", () => {
-  it("should do something", () => {
+  test("result should have the length of the data provided", () => {
     const { result } = renderHook(() => useRecurringEvent(testResponse));
-    expect(result.current.events.length).toBe(1);
+    expect(result.current.events.length).toBe(mockedEvents.length);
   });
 });

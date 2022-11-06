@@ -7,7 +7,9 @@ import Admin from "./routes/admin";
 import Event from "./routes/event";
 import EventList from "./routes/event-list";
 import LandingPage from "./routes/landing-page";
+import Maker from "./routes/maker";
 import MakerList from "./routes/maker-list";
+import RecurringEvent from "./routes/recurring-event";
 import Root from "./routes/root";
 import VideoList from "./routes/video-list";
 import "./styles/App.css";
@@ -42,7 +44,9 @@ const router = createBrowserRouter([
         element: <EventList />,
         errorElement: createErrorPage("All events", true),
       },
-      { path: "/event/:eventId", element: <Event /> },
+      { path: "/event/:eventName", element: <Event /> },
+      { path: "/convention/:eventName", element: <RecurringEvent /> },
+      { path: "/maker/:makerName", element: <Maker /> },
       { path: "/admin", element: <Admin /> },
     ],
   },

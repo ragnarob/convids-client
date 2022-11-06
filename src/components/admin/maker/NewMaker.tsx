@@ -65,6 +65,7 @@ export default function NewMaker({ onFinish }: NewMakerProps) {
           >
             <Input />
           </Form.Item>
+
           <Form.Item
             label="Country"
             name="country"
@@ -73,18 +74,25 @@ export default function NewMaker({ onFinish }: NewMakerProps) {
           >
             <Select showSearch>
               {countries.map((country) => (
-                <Select.Option value={country.name}>
+                <Select.Option value={country.name} key={country.name}>
                   {getUnicodeFlagIcon(country.code)} {country.name}
                 </Select.Option>
               ))}
             </Select>
           </Form.Item>
+
+          <Form.Item label="Youtube link" name="youtubeLink">
+            <Input />
+          </Form.Item>
+
           <Form.Item label="Furtrack tag" name="furtrackTag">
             <Input placeholder="eg. melon_mow" />
           </Form.Item>
+
           <Form.Item label="Links" name="links">
             <Input.TextArea placeholder="One link per line" />
           </Form.Item>
+
           <Form.Item {...formTailLayout}>
             <Space>
               <Button onClick={onFinish}>Cancel</Button>

@@ -13,6 +13,7 @@ const mostRecentVideosQuery = gql`
       }
       maker {
         name
+        country
       }
     }
   }

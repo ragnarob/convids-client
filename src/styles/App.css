@@ -1,4 +1,9 @@
 @import "~antd/dist/antd.css";
+p,
+ul,
+li {
+  margin: 0;
+}
 body {
   font-family: "Mulish";
 }
@@ -9,5 +14,14 @@ body {
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+.red-box {
+  background-color: #85061b88;
+  width: fit-content;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+.red-box p {
+  color: white;
 }
 /*# sourceMappingURL=App.css.map */

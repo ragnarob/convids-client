@@ -78,7 +78,7 @@ export default function NewRecurringEvent({
           >
             <Select showSearch>
               {countries.map((country) => (
-                <Select.Option value={country.name}>
+                <Select.Option value={country.name} key={country.name}>
                   {getUnicodeFlagIcon(country.code)} {country.name}
                 </Select.Option>
               ))}

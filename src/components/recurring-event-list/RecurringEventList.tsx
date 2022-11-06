@@ -1,4 +1,5 @@
-import { Typography } from "antd";
+import { Space } from "antd";
+import RecurringEventCard from "../recurring-event-card";
 import useRecurringEvent from "./useRecurringEvent";
 import useRecurringEventGql, {
   RecurringEventGqlReturn,
@@ -16,10 +17,10 @@ function RecurringEventList({ dataProvider }: RecurringEventListProps) {
   const { events } = useRecurringEvent(dataProvider);
 
   return (
-    <>
+    <Space wrap align="start">
       {events &&
         events.length > 0 &&
-        events.map((e) => <Typography>{JSON.stringify(e)}</Typography>)}
-    </>
+        events.map((e) => <RecurringEventCard event={e} key={e.id} />)}
+    </Space>
   );
 }

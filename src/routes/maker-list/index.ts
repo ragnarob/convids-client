@@ -1,1 +1,1 @@
-export { default } from "./maker-list";
+export { default } from "./MakerList";

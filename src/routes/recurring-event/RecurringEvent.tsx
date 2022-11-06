@@ -1,17 +1,18 @@
 import { Typography } from "antd";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router";
+import { NavLink } from "react-router-dom";
 
-export default function Event({}) {
+export default function RecurringEvent({}) {
   const { eventName } = useParams<{ eventName: string }>();
 
   return (
     <>
-      <Typography.Title level={1}>Event: {eventName}</Typography.Title>
+      <Typography.Title level={1}>Convention: {eventName}</Typography.Title>
 
       <NavLink to="/">Back to home</NavLink>
 
       <div>
-        <p>Here are all the details about the event!</p>
+        <p>Here are all the details about the convention!</p>
       </div>
 
       <div className="red-box">

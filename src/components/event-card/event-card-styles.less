@@ -1,0 +1,14 @@
+@import "../../styles/App.less";
+
+.event-card {
+  display: "flex";
+  flex-direction: column;
+  border-radius: 2px;
+  &.hover-fill:hover {
+    background-color: lighten(@app-secondary, 35%);
+    color: white;
+  }
+  &.full-width {
+    width: 100%;
+  }
+}
