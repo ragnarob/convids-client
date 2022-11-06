@@ -1,8 +1,8 @@
 import { Radio, Typography } from "antd";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import RecurringEventList from "./RecurringEventList";
-import SingleEventList from "./SingleEventList";
+import RecurringEventList from "../../components/recurring-event-list";
+import SingleEventList from "../../components/single-event-list";
 
 export default function EventList({}) {
   const [mode, setMode] = useState("single");

@@ -1,3 +1,5 @@
+import countries from "./countries.json";
+
 export function daysAgoString(dateStr: string) {
   const daysAgo = Math.floor(
     (new Date().getTime() - new Date(dateStr).getTime()) / 86400000
@@ -18,4 +20,9 @@ export function daysAgoString(dateStr: string) {
 
     return `${Math.floor(monthsAgo / 12)} years ago`;
   }
+}
+
+export function countryNameToCode(countryName: string) {
+  const country = countries.find((c) => c.name === countryName);
+  return country?.code as string;
 }

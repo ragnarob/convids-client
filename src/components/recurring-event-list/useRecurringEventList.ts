@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
+import { allRecurringEventsQuery } from "../../routes/event-list/event-list.queries";
 import { RecurringEventsGqlResponse } from "../../types/types";
-import { allRecurringEventsQuery } from "./event-list.queries";
 
 export default function useRecurringEventList() {
   const { loading, error, data } = useQuery<RecurringEventsGqlResponse>(

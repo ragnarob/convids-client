@@ -1,7 +1,7 @@
 import { Button, Form, Input, Result, Select, Space, Typography } from "antd";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import countries from "../../../utils/countries.json";
-import useNewRecurringEvent from "./useNewRecurringEvent";
+import useNewMaker from "./useNewMaker";
 
 const labelCol = {
   span: 4,
@@ -24,51 +24,46 @@ const formLayout = {
   wrapperCol: { span: 8, offset: 0 },
 };
 
-interface NewRecurringEventProps {
+interface NewMakerProps {
   onFinish: () => void;
 }
 
-export default function NewRecurringEvent({
-  onFinish,
-}: NewRecurringEventProps) {
-  const { onSubmit, success } = useNewRecurringEvent();
+export default function NewMaker({ onFinish }: NewMakerProps) {
+  const { onSubmit, success } = useNewMaker();
 
   return (
     <>
       <Typography>
-        <Typography.Title level={3}>New recurring event</Typography.Title>
+        <Typography.Title level={3}>New maker</Typography.Title>
       </Typography>
 
       {success && (
         <Result
           status="success"
-          title="Successfully added event"
+          title="Successfully added maker"
           extra={[
             <Button type="primary" key="console" onClick={onFinish}>
               Close
             </Button>,
           ]}
-        ></Result>
+        />
       )}
 
       {!success && (
         <Form
-          name="New recurring event"
+          name="New maker"
           colon={false}
           labelWrap={true}
           onFinish={onSubmit}
           {...formLayout}
         >
           <Form.Item
-            label="Title"
-            name="title"
+            label="Name"
+            name="name"
             required
             rules={[{ required: true }]}
           >
-            <Input placeholder="eg. Midwest Furfest" />
-          </Form.Item>
-          <Form.Item label="Short title" name="shortTitle">
-            <Input placeholder="eg. MFF" />
+            <Input />
           </Form.Item>
           <Form.Item
             label="Country"
@@ -84,12 +79,8 @@ export default function NewRecurringEvent({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Description" name="description">
-            <Input.TextArea />
-          </Form.Item>
-
           <Form.Item label="Furtrack tag" name="furtrackTag">
-            <Input placeholder="eg. midwest_furfest" />
+            <Input placeholder="eg. melon_mow" />
           </Form.Item>
           <Form.Item label="Links" name="links">
             <Input.TextArea placeholder="One link per line" />

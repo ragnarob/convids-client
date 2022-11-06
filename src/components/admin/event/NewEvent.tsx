@@ -5,6 +5,7 @@ import {
   Input,
   Result,
   Select,
+  Space,
   Typography,
 } from "antd";
 import useNewEvent from "./useNewEvent";
@@ -30,7 +31,11 @@ const formLayout = {
   wrapperCol: { span: 8, offset: 0 },
 };
 
-export default function NewEvent() {
+interface NewEventProps {
+  onFinish: () => void;
+}
+
+export default function NewEvent({ onFinish }: NewEventProps) {
   const { recurringEvents, onSubmit, success } = useNewEvent();
 
   return (
@@ -44,7 +49,7 @@ export default function NewEvent() {
           status="success"
           title="Successfully added event"
           extra={[
-            <Button type="primary" key="console">
+            <Button type="primary" key="console" onClick={onFinish}>
               Close
             </Button>,
           ]}
@@ -97,9 +102,12 @@ export default function NewEvent() {
           </Form.Item>
 
           <Form.Item {...formTailLayout}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            <Space>
+              <Button onClick={onFinish}>Cancel</Button>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Space>
           </Form.Item>
         </Form>
       )}

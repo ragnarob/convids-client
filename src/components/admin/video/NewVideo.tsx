@@ -1,7 +1,7 @@
 import { Button, Form, Input, Result, Select, Space, Typography } from "antd";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import countries from "../../../utils/countries.json";
-import useNewRecurringEvent from "./useNewRecurringEvent";
+import useNewVideo from "./useNewVideo";
 
 const labelCol = {
   span: 4,
@@ -24,36 +24,34 @@ const formLayout = {
   wrapperCol: { span: 8, offset: 0 },
 };
 
-interface NewRecurringEventProps {
+interface NewVideoProps {
   onFinish: () => void;
 }
 
-export default function NewRecurringEvent({
-  onFinish,
-}: NewRecurringEventProps) {
-  const { onSubmit, success } = useNewRecurringEvent();
+export default function NewVideo({ onFinish }: NewVideoProps) {
+  const { makers, onSubmit, success } = useNewVideo();
 
   return (
     <>
       <Typography>
-        <Typography.Title level={3}>New recurring event</Typography.Title>
+        <Typography.Title level={3}>New video</Typography.Title>
       </Typography>
 
       {success && (
         <Result
           status="success"
-          title="Successfully added event"
+          title="Successfully added video"
           extra={[
             <Button type="primary" key="console" onClick={onFinish}>
               Close
             </Button>,
           ]}
-        ></Result>
+        />
       )}
 
       {!success && (
         <Form
-          name="New recurring event"
+          name="New video"
           colon={false}
           labelWrap={true}
           onFinish={onSubmit}
@@ -65,11 +63,24 @@ export default function NewRecurringEvent({
             required
             rules={[{ required: true }]}
           >
-            <Input placeholder="eg. Midwest Furfest" />
+            <Input placeholder="Normally same as YT title" />
           </Form.Item>
-          <Form.Item label="Short title" name="shortTitle">
-            <Input placeholder="eg. MFF" />
+
+          <Form.Item
+            label="Maker"
+            name="maker"
+            required
+            rules={[{ required: true }]}
+          >
+            <Select showSearch>
+              {makers.map((maker) => (
+                <Select.Option value={maker.id}>
+                  {getUnicodeFlagIcon(maker.country)} {maker.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
+
           <Form.Item
             label="Country"
             name="country"
@@ -84,16 +95,15 @@ export default function NewRecurringEvent({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Description" name="description">
-            <Input.TextArea />
-          </Form.Item>
 
           <Form.Item label="Furtrack tag" name="furtrackTag">
-            <Input placeholder="eg. midwest_furfest" />
+            <Input placeholder="eg. melon_mow" />
           </Form.Item>
+
           <Form.Item label="Links" name="links">
             <Input.TextArea placeholder="One link per line" />
           </Form.Item>
+
           <Form.Item {...formTailLayout}>
             <Space>
               <Button onClick={onFinish}>Cancel</Button>

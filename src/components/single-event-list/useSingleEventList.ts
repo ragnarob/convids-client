@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
+import { allEventsQuery } from "../../routes/event-list/event-list.queries";
 import { EventsGqlResponse } from "../../types/types";
-import { allEventsQuery } from "./event-list.queries";
 
 export default function useSingleEventList() {
   const { loading, error, data } = useQuery<EventsGqlResponse>(allEventsQuery);

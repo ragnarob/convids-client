@@ -1,14 +1,9 @@
 import { gql, useMutation } from "@apollo/client";
-import countries from "../../../types/countries.json";
 import {
   AddRecurringEventGqlResponse,
   RecurringEvent,
 } from "../../../types/types";
-
-const countryNameToCode = (countryName: string) => {
-  const country = countries.find((c) => c.name === countryName);
-  return country?.code as string;
-};
+import { countryNameToCode } from "../../../utils";
 
 const createRecurringEventQuery = gql`
   mutation CreateRecurringEvent(

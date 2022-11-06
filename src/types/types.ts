@@ -6,23 +6,21 @@ export interface Video {
   event: Event[];
   maker: Maker;
 }
-export interface VideosGqlResponse {
-  videos: Video[];
-}
-
-export interface EventsGqlResponse {
-  events: Event[];
-}
-
-export interface RecurringEventsGqlResponse {
-  recurringEvents: RecurringEvent[];
-}
 
 export interface Maker {
   id: string;
   name: string;
   links: string;
   country: string;
+}
+
+export interface Event {
+  id: string;
+  title: string;
+  shortTitle: string;
+  furtrackTag: string;
+  date: string;
+  recurringEvent: RecurringEvent;
 }
 
 export interface RecurringEvent {
@@ -34,26 +32,30 @@ export interface RecurringEvent {
   links: string;
   events: Event[];
 }
+
+export interface VideosGqlResponse {
+  videos: Video[];
+}
+export interface EventsGqlResponse {
+  events: Event[];
+}
+export interface RecurringEventsGqlResponse {
+  recurringEvents: RecurringEvent[];
+}
+interface AddGqlResponseContent<T> {
+  data: T;
+  error: string;
+  ok: boolean;
+}
+export interface AddMakerGqlResponse {
+  addMaker: AddGqlResponseContent<Maker>;
+}
+export interface AddVideoGqlResponse {
+  addVideo: AddGqlResponseContent<Video>;
+}
 export interface AddRecurringEventGqlResponse {
-  addRecurringEvent: {
-    data: RecurringEvent;
-    error: string;
-    ok: boolean;
-  };
+  addRecurringEvent: AddGqlResponseContent<RecurringEvent>;
 }
 export interface AddEventGqlResponse {
-  addEvent: {
-    data: Event;
-    error: string;
-    ok: boolean;
-  };
-}
-
-export interface Event {
-  id: string;
-  title: string;
-  shortTitle: string;
-  furtrackTag: string;
-  date: string;
-  recurringEvent: RecurringEvent;
+  addEvent: AddGqlResponseContent<Event>;
 }
