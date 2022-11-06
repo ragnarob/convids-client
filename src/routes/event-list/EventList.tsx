@@ -7,7 +7,6 @@ import SingleEventList from "../../components/single-event-list";
 export default function EventList() {
   const [mode, setMode] = useState("single");
 
-  throw new Error("Not implemented");
   return (
     <>
       <Typography>
