@@ -3,8 +3,18 @@ import { AddMakerGqlResponse, Maker } from "../../../types/types";
 import { countryNameToCode } from "../../../utils";
 
 const createMakerQuery = gql`
-  mutation CreateMaker($title: String!, $country: String!, $links: String) {
-    addMaker(title: $title) {
+  mutation CreateMaker(
+    $name: String!
+    $country: String!
+    $links: String
+    $furtrackTag: String
+  ) {
+    addMaker(
+      name: $name
+      country: $country
+      links: $links
+      furtrackTag: $furtrackTag
+    ) {
       data {
         id
       }
