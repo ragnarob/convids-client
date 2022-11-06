@@ -1,12 +1,13 @@
 import { Radio, Typography } from "antd";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import RecurringEventList from "../../components/recurring-event-list";
+import RecurringEventListContainer from "../../components/recurring-event-list/RecurringEventList";
 import SingleEventList from "../../components/single-event-list";
 
-export default function EventList({}) {
+export default function EventList() {
   const [mode, setMode] = useState("single");
 
+  throw new Error("Not implemented");
   return (
     <>
       <Typography>
@@ -29,7 +30,7 @@ export default function EventList({}) {
       />
 
       {mode === "single" && <SingleEventList />}
-      {mode === "recurring" && <RecurringEventList />}
+      {mode === "recurring" && <RecurringEventListContainer />}
     </>
   );
 }

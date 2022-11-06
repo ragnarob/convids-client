@@ -26,10 +26,10 @@ export interface Event {
 export interface RecurringEvent {
   id: string;
   title: string;
-  shortTitle: string;
-  furtrackTag: string;
+  shortTitle?: string;
+  furtrackTag?: string;
   country: string;
-  links: string;
+  links?: string;
   events: Event[];
 }
 

@@ -1,41 +1,9 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   AddEventGqlResponse,
   RecurringEventsGqlResponse,
 } from "../../../types/types";
-
-const createEventQuery = gql`
-  mutation CreateEvent(
-    $title: String!
-    $shortTitle: String
-    $furtrackTag: String
-    $date: String!
-    $recurringEventId: Int
-  ) {
-    addEvent(
-      title: $title
-      shortTitle: $shortTitle
-      furtrackTag: $furtrackTag
-      date: $date
-      recurringEventId: $recurringEventId
-    ) {
-      data {
-        id
-      }
-      error
-      ok
-    }
-  }
-`;
-
-export const recurringEventNameQuery = gql`
-  query AllRecurringEvents {
-    recurringEvents {
-      id
-      title
-    }
-  }
-`;
+import { createEventQuery, recurringEventNameQuery } from "./new-event.queries";
 
 export default function useNewEvent() {
   const { error: recurringEventErr, data: recurringEventData } =

@@ -22,6 +22,21 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <MakerList />,
+//   },
+// ]);
+// function asd () {
+//   return (
+//     <RouterProvider router={router}>
+
+//     </RouterProvider>
+//   )
+// }
+
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
@@ -35,7 +50,11 @@ root.render(
               <Route path="/" element={<LandingPage />} />
               <Route path="/maker-list" element={<MakerList />} />
               <Route path="/video-list" element={<VideoList />} />
-              <Route path="/event-list" element={<EventList />} />
+              <Route
+                path="/event-list"
+                element={<EventList />}
+                errorElement={<p>Oh no</p>}
+              />
               <Route path="/event/:eventName" element={<Event />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>

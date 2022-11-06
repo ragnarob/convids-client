@@ -1,33 +1,10 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   AddRecurringEventGqlResponse,
   RecurringEvent,
 } from "../../../types/types";
 import { countryNameToCode } from "../../../utils";
-
-const createRecurringEventQuery = gql`
-  mutation CreateRecurringEvent(
-    $title: String!
-    $shortTitle: String
-    $furtrackTag: String
-    $country: String!
-    $links: String
-  ) {
-    addRecurringEvent(
-      title: $title
-      shortTitle: $shortTitle
-      furtrackTag: $furtrackTag
-      country: $country
-      links: $links
-    ) {
-      data {
-        id
-      }
-      error
-      ok
-    }
-  }
-`;
+import { createRecurringEventQuery } from "./new-recurring-event.queries";
 
 export default function useNewRecurringEvent() {
   const [addGqlRecurringEvent, { data, loading, error }] =
