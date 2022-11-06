@@ -13,5 +13,18 @@ body {
 .video-card {
   display: "flex";
   flex-direction: column;
+  border-radius: 2px;
+}
+.video-card.hover-fill:hover {
+  background-color: #fce5e8;
+  color: white;
+}
+.video-card.full-width {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .full-width-mobile {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=video-card.css.map */

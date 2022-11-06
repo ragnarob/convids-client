@@ -1,9 +1,12 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "@fontsource/mulish";
+import { Layout, Typography } from "antd";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import reportWebVitals from "./reportWebVitals";
+import Admin from "./routes/admin";
 import Event from "./routes/event";
 import EventList from "./routes/event-list";
 import LandingPage from "./routes/landing-page";
@@ -16,37 +19,41 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingPage />,
-    // errorElement: <p>Oh no it failed</p>,
-  },
-  {
-    path: "/maker-list",
-    element: <MakerList />,
-  },
-  {
-    path: "/video-list",
-    element: <VideoList />,
-  },
-  {
-    path: "/event-list",
-    element: <EventList />,
-  },
-  {
-    path: "/event/:eventName",
-    element: <Event />,
-  },
-]);
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <RouterProvider router={router} />
+      <Router>
+        <Layout style={{ minHeight: "100vh" }}>
+          <Layout.Header className="nav">
+            <Navbar />
+          </Layout.Header>
+          <Layout.Content style={{ padding: "1rem" }}>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/maker-list" element={<MakerList />} />
+              <Route path="/video-list" element={<VideoList />} />
+              <Route path="/event-list" element={<EventList />} />
+              <Route path="/event/:eventName" element={<Event />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </Layout.Content>
+          <Layout.Footer>
+            <Typography style={{ textAlign: "center" }}>
+              Made with ❤️ by{" "}
+              <a href="https://twitter.com/Melon_mow" target="_blank">
+                Melon
+              </a>{" "}
+              and{" "}
+              <a href="https://twitter.com/Patrick_snowyote" target="_blank">
+                Patrick
+              </a>
+            </Typography>
+          </Layout.Footer>
+        </Layout>
+      </Router>
     </ApolloProvider>
   </React.StrictMode>
 );

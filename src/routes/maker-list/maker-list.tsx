@@ -1,9 +1,12 @@
+import { Typography } from "antd";
 import { NavLink } from "react-router-dom";
 
 export default function MakerList({}) {
   return (
     <>
-      <h1>All makers</h1>
+      <Typography>
+        <Typography.Title level={1}>All makers</Typography.Title>
+      </Typography>
 
       <NavLink to="/">Back to home</NavLink>
 

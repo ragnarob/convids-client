@@ -3,49 +3,40 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Space } from "antd";
-import { NavLink } from "react-router-dom";
+import { Button, Space, Typography } from "antd";
+import { Link } from "react-router-dom";
 import RecentVideos from "../../components/recent-videos";
 import "./landing-page-styles.css";
 
 export default function LandingPage({}) {
   return (
     <section>
-      <h1>Furry Convention Videos!</h1>
-      <div>
-        <NavLink to="/video-list">All videos</NavLink>
-        <NavLink to="/event-list">All events</NavLink>
-        <NavLink to="/maker-list">All makers</NavLink>
-      </div>
-      {/* <FeaturedVideo /> */}
-      <RecentVideos />
-      <Space className="button-container">
-        <Button
-          href="/video-list"
-          type="primary"
-          icon={<VideoCameraOutlined />}
-          size="large"
-        >
-          Browse all videos
-        </Button>
-        <Button
-          href="/maker-list"
-          type="primary"
-          icon={<UserOutlined />}
-          size="large"
-        >
-          Browse all makers
-        </Button>
+      <Typography.Title level={1}>Furry Con Videos</Typography.Title>
 
-        <Button
-          href="/event-list"
-          type="primary"
-          icon={<BankOutlined />}
-          size="large"
-        >
-          Browse all events
-        </Button>
+      <Typography.Text>
+        This is a site for furry convention videos. You can find videos from
+        lalal allala. Bla bla bla. Please asd asd asd asd asd. asd asd asd asd.
+      </Typography.Text>
+
+      <Space className="button-container">
+        <Link to={"/video-list"}>
+          <Button type="primary" size="large" icon={<VideoCameraOutlined />}>
+            Videos
+          </Button>
+        </Link>
+        <Link to={"/maker-list"}>
+          <Button type="primary" size="large" icon={<UserOutlined />}>
+            Makers
+          </Button>
+        </Link>
+        <Link to={"/event-list"}>
+          <Button type="primary" size="large" icon={<BankOutlined />}>
+            Events
+          </Button>
+        </Link>
       </Space>
+
+      <RecentVideos />
     </section>
   );
 }

@@ -1,9 +1,12 @@
+import { Typography } from "antd";
 import { NavLink } from "react-router-dom";
 
 export default function VideoList({}) {
   return (
     <>
-      <h1>All videos</h1>
+      <Typography>
+        <Typography.Title level={1}>All videos</Typography.Title>
+      </Typography>
 
       <NavLink to="/">Back to home</NavLink>
 

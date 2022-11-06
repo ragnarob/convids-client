@@ -1,4 +1,4 @@
-import { Space, Typography } from "antd";
+import { Typography } from "antd";
 import VideoCard from "../video-card";
 import VideoEmbed from "../video-embed";
 import "./recent-videos-styles.css";
@@ -15,13 +15,19 @@ export default function RecentVideos({}) {
   return (
     <section>
       <Typography.Title level={2} style={{ marginBottom: 0 }}>
-        Newest videos
+        Newest video
       </Typography.Title>
       <VideoEmbed video={videos[0]} />
-      <Space className="recent-vids-container">
+
+      <Typography.Title level={3} style={{ margin: "1rem 0 0.5rem 0" }}>
+        Other recent videos
+      </Typography.Title>
+      <div className="recent-vids-container">
         {smallerVideos &&
-          smallerVideos.map((v) => <VideoCard video={v} key={v?.id} />)}
-      </Space>
+          smallerVideos.map((v) => (
+            <VideoCard video={v} key={v?.id} fullWidthMobile />
+          ))}
+      </div>
       <br />
     </section>
   );
